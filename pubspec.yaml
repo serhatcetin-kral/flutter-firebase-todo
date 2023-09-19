@@ -36,7 +36,8 @@ dependencies:
 
   google_fonts:
   firebase_core:
-
+  intl:
+  fluttertoast:
 
 
 
