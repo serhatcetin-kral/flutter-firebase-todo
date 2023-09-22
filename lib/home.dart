@@ -34,7 +34,7 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.purple,
         title:Text('TO DO'),
       ),
-      body: Container(
+      body:Container(
         padding: EdgeInsets.all(10),
         height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
@@ -43,7 +43,7 @@ class _HomeState extends State<Home> {
       builder: (context,snapshot){
         if(snapshot.connectionState==ConnectionState.waiting){
           return Container(
-            height: 100,
+            height: 10,
             child: CircularProgressIndicator(),);
 
         }
@@ -57,13 +57,13 @@ class _HomeState extends State<Home> {
               height: 90,
 
               child: Column(
-            //  children: [Text(docs?[index]["title"])],
+
                 children: [Text(docs?[index]["title"])],
             ),);
           },);
         }
       },),
-      color: Colors.redAccent,),
+      color: Colors.black54,),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add,color: Colors.white,),
         backgroundColor: Colors.cyan,onPressed: (){
