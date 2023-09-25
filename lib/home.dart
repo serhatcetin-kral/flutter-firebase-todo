@@ -34,7 +34,7 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.purple,
         title:Text('TO DO'),
       ),
-      body: Container(
+      body:Container(
         padding: EdgeInsets.all(10),
         height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
@@ -43,7 +43,7 @@ class _HomeState extends State<Home> {
       builder: (context,snapshot){
         if(snapshot.connectionState==ConnectionState.waiting){
           return Container(
-            height: 100,
+            height: 10,
             child: CircularProgressIndicator(),);
 
         }
@@ -56,14 +56,30 @@ class _HomeState extends State<Home> {
               borderRadius: BorderRadius.circular(10)),
               height: 90,
 
-              child: Column(
-            //  children: [Text(docs?[index]["title"])],
-                children: [Text(docs?[index]["title"])],
-            ),);
+              child: Row(
+                mainAxisAlignment:MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+
+                      Container(
+                          margin: EdgeInsets.only(left: 20),
+                          child: Text(docs?[index]["title"],style: TextStyle(fontSize: 18 ,color: Colors.white),))],
+            ),
+                  Container(child: IconButton(icon: Icon(Icons.delete,color: Colors.white,),onPressed: ()async{
+                    await FirebaseFirestore.instance.
+                    collection("task").doc(uid).
+                    collection("mytask").doc(docs?[index]["time"])
+                        .delete();
+                  },),),
+                ],
+              ),);
           },);
         }
       },),
-      color: Colors.redAccent,),
+      color: Colors.black54,),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add,color: Colors.white,),
         backgroundColor: Colors.cyan,onPressed: (){

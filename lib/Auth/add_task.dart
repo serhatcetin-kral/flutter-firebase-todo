@@ -19,15 +19,21 @@ class _AddTaskState extends State<AddTask> {
     final User user=await  auth.currentUser!;
 
     String uid=user.uid;
-    var time =DateTime.now;
-    await FirebaseFirestore.instance.collection("task").doc(uid).collection("mytask").doc(time.toString()).set({"title":titleController.text,"description":discriptionController.text,
-    "time":time.toString()});
+   // var time =DateTime.now;
+    final time = DateTime.now();
+    await FirebaseFirestore.instance.collection("task").doc(uid).collection("mytask").
+    doc(time.toString()).set({"title":titleController.text,"description":discriptionController.text,
+    "time":time.toString(),
+    "timestamp":time
+    });
 
 
     Fluttertoast.showToast(
       msg: "data added",
     );
   }
+
+
 
   @override
   Widget build(BuildContext context) {
